@@ -12,7 +12,7 @@ public class Main {
      int i = 0;
      do{
          if(i == 0){
-             System.out.println("Please, enter distance or q for exit: ");
+             System.out.println(" enter distance or q for exit: ");
          } else if(i == 1){
              System.out.println("Please, enter price per km or q for exit: ");
          } else if(i == 2){
