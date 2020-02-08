@@ -1,4 +1,4 @@
-package Brest;
+
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("hello");
-     coefficientСalculation(0, "33");
 
-
-     Double[] enterValues = new Double[4];
+        BigDecimal[] enterValues = new BigDecimal[4];
      Scanner scanner = new Scanner(System.in);
      String inputValue;
 
@@ -23,13 +20,21 @@ public class Main {
 
          if(!isExitValue(inputValue)){
              if(isDoubleValue(inputValue)){
+                 System.out.println(i);
+                 if(i == 1 || i == 3) {
+                     enterValues[i] = (coefficientCalculation(i, inputValue, enterValues[i]));
+                 } else {
+                     enterValues[i] = new BigDecimal(inputValue);
+                 }
 
-//                 enterValues[i] = new BigDecimal(coefficientСalculation(i, inputValue));
                  i++;
              }
          }
          if(i == 4){
-             Double calcResult = enterValues[0] * enterValues[1] + enterValues[2] * enterValues[3];
+             BigDecimal calcResult =
+                     enterValues[0].multiply(enterValues[1])
+                             .add(enterValues[2].multiply(enterValues[3]));
+
              System.out.println("Price: $"+calcResult);
              i = 0;
          }
@@ -63,7 +68,8 @@ public class Main {
             Double kilometerPrice,
             ArrayList<Double> coefficientArray,
             Double quantityKilometers)
-    {
+    { System.out.println("NEN");
+
         BigDecimal pricePerKm = new BigDecimal(kilometerPrice);
             if (quantityKilometers < 1000){
                 pricePerKm = new BigDecimal(kilometerPrice * coefficientArray.get(1));
@@ -76,7 +82,7 @@ public class Main {
         return pricePerKm;
     }
 
-    private static BigDecimal countValueKilogram(
+    private static BigDecimal countPriceWeight(
             Double kilogramPrice,
             ArrayList<Double> coefficientArray,
             Double quantityKilogram)
@@ -93,24 +99,31 @@ public class Main {
         return pricePerKg;
     }
 
-    private static void coefficientСalculation(int inputCounter, String inputValue, Double quantitativeValue)
+
+    private static BigDecimal coefficientCalculation(int inputCounter, String inputValue, BigDecimal quantitativeValue)
             throws FileNotFoundException
     {
-
+        BigDecimal pricePerUnit = new BigDecimal(0);
         switch (inputCounter) {
             case 1:
                 //передаём в калькулятор массив коэфов для инпуткоунтера и значение для километрожа
                 //inputvalue значение цены, потом массив, потом количество километров(а потом кг)
+                System.out.println((Double.parseDouble(inputValue)));
                 System.out.println(getCoefficient(inputCounter));
-                countPriceDistance(Double.parseDouble(inputValue), getCoefficient(inputCounter), quantitativeValue);
+                System.out.println( quantitativeValue.doubleValue());
+                pricePerUnit = countPriceDistance(Double.parseDouble(inputValue),
+                        getCoefficient(inputCounter),
+                        quantitativeValue.doubleValue());
                 break;
 
             case 3:
                 System.out.println(getCoefficient(inputCounter));
-                countPriceDistance(Double.parseDouble(inputValue), getCoefficient(inputCounter), quantitativeValue);
+                pricePerUnit = countPriceWeight(Double.parseDouble(inputValue),
+                        getCoefficient(inputCounter),
+                        quantitativeValue.doubleValue());
                 break;
-
         }
+        return pricePerUnit;
     }
 
 
