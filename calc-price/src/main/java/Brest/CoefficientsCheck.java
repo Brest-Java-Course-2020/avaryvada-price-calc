@@ -3,7 +3,6 @@ package Brest;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Scanner;
 
 public class CoefficientsCheck {
@@ -18,7 +17,7 @@ public class CoefficientsCheck {
         inputValue = scanner.next();
 
         if(inputValue.equalsIgnoreCase("E")){
-
+            //TODO: add validation of input parameters
             System.out.println("Please set coefficients for less 1000, 1000-10.000 amd more than 10.000km "+
                     "and separate it with (-):");
             String distanceCoefficients = scanner.next();
@@ -39,6 +38,7 @@ public class CoefficientsCheck {
                 e.printStackTrace();
             }finally{
                 try {
+                    assert writeCoef != null;
                     writeCoef.close();
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -23,6 +23,7 @@ public class LogWriter {
             e.printStackTrace();
         }finally{
             try {
+                assert writeLog != null;
                 writeLog.close();
             } catch (IOException e) {
                 e.printStackTrace();

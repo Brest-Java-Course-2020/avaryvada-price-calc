@@ -38,6 +38,7 @@ public class Main {
             }
         } while (!isExitValue(inputValue));
         System.out.println("Finish");
+        scanner.close();
     }
 
     private static void invitationToEnterValue(int inputCounter) {
