@@ -13,7 +13,7 @@ public class LogWriter {
         File logFile = new File("src/main/output/log");
         FileWriter writeLog = null;
         try {
-            writeLog = new FileWriter(logFile);
+            writeLog = new FileWriter(logFile, true);
             writeLog.write("Date: " + new Date() + "\nInputValues:\n"+
             "Distance: " + enteredValues[0] + " km.\nPrice per kilometer: " + enteredValues[1] +
             "$\nWidth: " + enteredValues[2] + " kg.\nPrice per kilogram: " + enteredValues[3] +

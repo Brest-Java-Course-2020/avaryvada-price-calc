@@ -11,6 +11,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String inputValue;
 
+        CoefficientsCheck.coefficientsEdit();
+
         int i = 0;
         do {
             invitationToEnterValue(i);
